@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: kafka-streams-demo
+  datasource:
+    url: jdbc:h2:mem:demo;DB_CLOSE_DELAY=-1;MODE=MySQL
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+  kafka:
+    bootstrap-servers: localhost:19092,localhost:29092,localhost:39092
+    streams:
+      application-id: kafka-streams-demo
+      state-dir: build/kafka-streams
+      properties:
+        default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+        default.value.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+        commit.interval.ms: 1000
+        processing.guarantee: at_least_once
+
+server:
+  port: 8080
